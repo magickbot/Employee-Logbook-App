@@ -349,19 +349,19 @@ class EmployeeLogbookApp:
         frame2.place(x=0, y=110)
 
         self.current_time = tk.Label(self.app, text="Current Time", font='timesnewroman 18 bold', bg="#29728f")
-        self.current_time.place(x=275, y=5)
+        self.current_time.place(x=325, y=5)
 
         self.current_date = tk.Label(self.app, text="Current Date", font='timesnewroman 12 bold', bg="#29728f")
-        self.current_date.place(x=300, y=40)
+        self.current_date.place(x=350, y=40)
 
         EmployeeLogbookApp.log_button = tk.Button(self.app, text='LOG IN / LOG OUT', font='verdana 9 bold', width=17, height=1, relief=tk.RAISED, command=self.loginlogout)
-        EmployeeLogbookApp.log_button.place(x=90, y=70)
+        EmployeeLogbookApp.log_button.place(x=140, y=70)
 
         EmployeeLogbookApp.reg_button = tk.Button(self.app, text='REGISTER', font='verdana 9 bold', width=9, height=1, relief=tk.RAISED, command=self.register)
-        EmployeeLogbookApp.reg_button.place(x=305, y=75)
+        EmployeeLogbookApp.reg_button.place(x=355, y=70)
 
         EmployeeLogbookApp.history_button = tk.Button(self.app, text='LOGBOOK HISTORY', font='verdana 9 bold', width=17, height=1, relief=tk.RAISED, command=self.call_table)
-        EmployeeLogbookApp.history_button.place(x=460, y=70)
+        EmployeeLogbookApp.history_button.place(x=510, y=70)
 
         self.search_button = tk.Button(self.app, text="REFRESH", font='verdana 9 bold', width=9, height=1, relief=tk.RAISED, command=self.see_todays)
         self.search_button.place(x= 10, y=112)
@@ -403,6 +403,14 @@ class EmployeeLogbookApp:
         self.clear_result_box()
         current_time_4logtable = datetime.now(PST)
         current_date_4logtable = current_time_4logtable.strftime("%Y-%m-%d")
+
+        if not os.path.exists("database.json"):
+            with open("database.json", "w") as d:
+                d.write("[]")
+        if not os.path.exists("logs.json"):
+            with open("logs.json", "w") as l:
+                l.write("[]")
+
         with open("database.json", "r") as d:
             with open("logs.json", "r") as l:
                 json_db = json.load(d)
